@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script type="text/javascript">
+            window.onload = function() {
+
+                var desktopFallback = "https://youtu.be/4uQ5AmTtGws",
+                mobileFallback = "https://youtu.be/4uQ5AmTtGws",
+                app = "vnd.youtube://4uQ5AmTtGws";
+
+                if( /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
+                    window.location = app;
+                    window.setTimeout(function() {
+                        window.location = mobileFallback;
+                    }, 25);
+                } else {
+                    window.location = desktopFallback;
+                }
+
+                function killPopup() {
+                    window.removeEventListener('pagehide', killPopup);
+                }
+
+                window.addEventListener('pagehide', killPopup);
+
+            };
+        </script>
+    </body>
+</html>
